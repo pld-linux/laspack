@@ -1,0 +1,458 @@
+diff -urN laspack.orig/laspack/eigenval.c laspack/laspack/eigenval.c
+--- laspack.orig/laspack/eigenval.c	2004-12-13 15:27:27.307548864 +0100
++++ laspack/laspack/eigenval.c	2004-12-13 15:29:10.392877512 +0100
+@@ -16,12 +16,12 @@
+ #include <stddef.h>
+ #include <math.h>
+ 
+-#include "laspack/eigenval.h"
+-#include "laspack/elcmp.h"
+-#include "laspack/errhandl.h"
+-#include "laspack/operats.h"
+-#include "laspack/rtc.h"
+-#include "laspack/copyrght.h"
++#include "eigenval.h"
++#include "elcmp.h"
++#include "errhandl.h"
++#include "operats.h"
++#include "rtc.h"
++#include "copyrght.h"
+ 
+ typedef struct {
+     double MinEigenval;
+diff -urN laspack.orig/laspack/eigenval.h laspack/laspack/eigenval.h
+--- laspack.orig/laspack/eigenval.h	2004-12-13 15:27:27.309548560 +0100
++++ laspack/laspack/eigenval.h	2004-12-13 15:32:25.576205136 +0100
+@@ -16,10 +16,10 @@
+ #ifndef EIGENVAL_H
+ #define EIGENVAL_H
+ 
+-#include "laspack/vector.h"
+-#include "laspack/qmatrix.h"
+-#include "laspack/precond.h"
+-#include "laspack/copyrght.h"
++#include "vector.h"
++#include "qmatrix.h"
++#include "precond.h"
++#include "copyrght.h"
+ 
+ /* estimation of extremal eigenvalues */
+ 
+diff -urN laspack.orig/laspack/elcmp.h laspack/laspack/elcmp.h
+--- laspack.orig/laspack/elcmp.h	2004-12-13 15:27:27.309548560 +0100
++++ laspack/laspack/elcmp.h	2004-12-13 15:37:18.648651352 +0100
+@@ -19,7 +19,7 @@
+ #include <float.h>
+ #include <math.h>
+ 
+-#include "laspack/copyrght.h"
++#include "copyrght.h"
+ 
+ typedef double Real;
+ 
+diff -urN laspack.orig/laspack/errhandl.c laspack/laspack/errhandl.c
+--- laspack.orig/laspack/errhandl.c	2004-12-13 15:27:27.308548712 +0100
++++ laspack/laspack/errhandl.c	2004-12-13 15:34:13.350820904 +0100
+@@ -16,8 +16,8 @@
+ #include <stdlib.h>
+ #include <string.h>
+ 
+-#include "laspack/errhandl.h"
+-#include "laspack/copyrght.h"
++#include "errhandl.h"
++#include "copyrght.h"
+ 
+ /* LASPack error status, procedure and objects where an error has ariced */
+ static LASErrIdType LASErrId = LASOK;
+diff -urN laspack.orig/laspack/errhandl.h laspack/laspack/errhandl.h
+--- laspack.orig/laspack/errhandl.h	2004-12-13 15:27:27.309548560 +0100
++++ laspack/laspack/errhandl.h	2004-12-13 15:37:26.807411032 +0100
+@@ -18,7 +18,7 @@
+ 
+ #include <stdio.h>
+ 
+-#include "laspack/copyrght.h"
++#include "copyrght.h"
+ 
+ typedef enum {
+     LASOK,
+diff -urN laspack.orig/laspack/factor.c laspack/laspack/factor.c
+--- laspack.orig/laspack/factor.c	2004-12-13 15:27:27.308548712 +0100
++++ laspack/laspack/factor.c	2004-12-13 15:34:28.213561424 +0100
+@@ -15,10 +15,10 @@
+ 
+ #include <string.h>
+ 
+-#include "laspack/factor.h"
+-#include "laspack/errhandl.h"
+-#include "laspack/qmatrix.h"
+-#include "laspack/copyrght.h"
++#include "factor.h"
++#include "errhandl.h"
++#include "qmatrix.h"
++#include "copyrght.h"
+ 
+ #define PEN_FACT 1e-4
+ 
+diff -urN laspack.orig/laspack/factor.h laspack/laspack/factor.h
+--- laspack.orig/laspack/factor.h	2004-12-13 15:27:27.310548408 +0100
++++ laspack/laspack/factor.h	2004-12-13 15:37:37.764745264 +0100
+@@ -16,9 +16,9 @@
+ #ifndef FACTOR_H
+ #define FACTOR_H
+ 
+-#include "laspack/vector.h"
+-#include "laspack/qmatrix.h"
+-#include "laspack/copyrght.h"
++#include "vector.h"
++#include "qmatrix.h"
++#include "copyrght.h"
+ 
+ QMatrix *ILUFactor(QMatrix *Q);
+ 
+diff -urN laspack.orig/laspack/itersolv.c laspack/laspack/itersolv.c
+--- laspack.orig/laspack/itersolv.c	2004-12-13 15:27:27.308548712 +0100
++++ laspack/laspack/itersolv.c	2004-12-13 15:35:09.839233360 +0100
+@@ -16,12 +16,12 @@
+ #include <stddef.h>
+ #include <math.h>
+ 
+-#include "laspack/itersolv.h"
+-#include "laspack/elcmp.h"
+-#include "laspack/errhandl.h"
+-#include "laspack/operats.h"
+-#include "laspack/rtc.h"
+-#include "laspack/copyrght.h"
++#include "itersolv.h"
++#include "elcmp.h"
++#include "errhandl.h"
++#include "operats.h"
++#include "rtc.h"
++#include "copyrght.h"
+ 
+ /* number of GMRES steps bevore restart */
+ static int GMRESSteps = 10;
+diff -urN laspack.orig/laspack/itersolv.h laspack/laspack/itersolv.h
+--- laspack.orig/laspack/itersolv.h	2004-12-13 15:27:27.310548408 +0100
++++ laspack/laspack/itersolv.h	2004-12-13 15:37:48.131169328 +0100
+@@ -16,11 +16,11 @@
+ #ifndef ITERSOLV_H
+ #define ITERSOLV_H
+ 
+-#include "laspack/vector.h"
+-#include "laspack/qmatrix.h"
+-#include "laspack/precond.h"
+-#include "laspack/eigenval.h"
+-#include "laspack/copyrght.h"
++#include "vector.h"
++#include "qmatrix.h"
++#include "precond.h"
++#include "eigenval.h"
++#include "copyrght.h"
+ 
+ typedef Vector *(*IterProcType)(QMatrix *, Vector *, Vector *, int,
+ 				PrecondProcType, double);
+diff -urN laspack.orig/laspack/lastypes.h laspack/laspack/lastypes.h
+--- laspack.orig/laspack/lastypes.h	2004-12-13 15:27:27.310548408 +0100
++++ laspack/laspack/lastypes.h	2004-12-13 15:38:03.760793264 +0100
+@@ -16,7 +16,7 @@
+ #ifndef LASTYPES_H
+ #define LASTYPES_H
+ 
+-#include "laspack/copyrght.h"
++#include "copyrght.h"
+ 
+ #ifndef BOOLEAN
+ #define BOOLEAN
+diff -urN laspack.orig/laspack/matrix.c laspack/laspack/matrix.c
+--- laspack.orig/laspack/matrix.c	2004-12-13 15:27:27.308548712 +0100
++++ laspack/laspack/matrix.c	2004-12-13 15:35:25.147906088 +0100
+@@ -18,9 +18,9 @@
+ #include <math.h>
+ #include <string.h>
+ 
+-#include "laspack/matrix.h"
+-#include "laspack/errhandl.h"
+-#include "laspack/copyrght.h"
++#include "matrix.h"
++#include "errhandl.h"
++#include "copyrght.h"
+ 
+ static ElType ZeroEl = { 0, 0.0 };
+ 
+diff -urN laspack.orig/laspack/matrix.h laspack/laspack/matrix.h
+--- laspack.orig/laspack/matrix.h	2004-12-13 15:27:27.310548408 +0100
++++ laspack/laspack/matrix.h	2004-12-13 15:38:14.335185712 +0100
+@@ -18,9 +18,9 @@
+ 
+ #include <stdlib.h>
+ 
+-#include "laspack/lastypes.h"
+-#include "laspack/elcmp.h"
+-#include "laspack/copyrght.h"
++#include "lastypes.h"
++#include "elcmp.h"
++#include "copyrght.h"
+ 
+ typedef struct {
+     char *Name;
+diff -urN laspack.orig/laspack/mlsolv.c laspack/laspack/mlsolv.c
+--- laspack.orig/laspack/mlsolv.c	2004-12-13 15:27:27.308548712 +0100
++++ laspack/laspack/mlsolv.c	2004-12-13 15:35:35.757293216 +0100
+@@ -17,11 +17,11 @@
+ #include <stdio.h>
+ #include <string.h>
+ 
+-#include "laspack/mlsolv.h"
+-#include "laspack/errhandl.h"
+-#include "laspack/operats.h"
+-#include "laspack/rtc.h"
+-#include "laspack/copyrght.h"
++#include "mlsolv.h"
++#include "errhandl.h"
++#include "operats.h"
++#include "rtc.h"
++#include "copyrght.h"
+ 
+ Vector *MGStep(int NoLevels, QMatrix *A, Vector *x, Vector *b,
+             Matrix *R, Matrix *P, int Level, int Gamma,
+diff -urN laspack.orig/laspack/mlsolv.h laspack/laspack/mlsolv.h
+--- laspack.orig/laspack/mlsolv.h	2004-12-13 15:27:27.310548408 +0100
++++ laspack/laspack/mlsolv.h	2004-12-13 15:38:25.533483312 +0100
+@@ -16,11 +16,11 @@
+ #ifndef MLSOLV_H
+ #define MLSOLV_H
+ 
+-#include "laspack/vector.h"
+-#include "laspack/matrix.h"
+-#include "laspack/qmatrix.h"
+-#include "laspack/itersolv.h"
+-#include "laspack/copyrght.h"
++#include "vector.h"
++#include "matrix.h"
++#include "qmatrix.h"
++#include "itersolv.h"
++#include "copyrght.h"
+ 
+ Vector *MGStep(int NoLevels, QMatrix *A, Vector *x, Vector *b,
+ 	    Matrix *R, Matrix *P, int Level, int Gamma,
+diff -urN laspack.orig/laspack/operats.c laspack/laspack/operats.c
+--- laspack.orig/laspack/operats.c	2004-12-13 15:27:27.309548560 +0100
++++ laspack/laspack/operats.c	2004-12-13 15:35:53.030667264 +0100
+@@ -17,9 +17,9 @@
+ #include <math.h>
+ #include <string.h>
+ 
+-#include "laspack/operats.h"
+-#include "laspack/errhandl.h"
+-#include "laspack/copyrght.h"
++#include "operats.h"
++#include "errhandl.h"
++#include "copyrght.h"
+ 
+ /* the following macro allows to optimize vector operations
+    for different computer architecture */
+diff -urN laspack.orig/laspack/operats.h laspack/laspack/operats.h
+--- laspack.orig/laspack/operats.h	2004-12-13 15:27:27.310548408 +0100
++++ laspack/laspack/operats.h	2004-12-13 15:38:52.168434184 +0100
+@@ -18,11 +18,11 @@
+ 
+ #include <stdlib.h>
+ 
+-#include "laspack/lastypes.h"
+-#include "laspack/vector.h"
+-#include "laspack/matrix.h"
+-#include "laspack/qmatrix.h"
+-#include "laspack/copyrght.h"
++#include "lastypes.h"
++#include "vector.h"
++#include "matrix.h"
++#include "qmatrix.h"
++#include "copyrght.h"
+ 
+ Vector *Asgn_VV(Vector *V1, Vector *V2);
+ Vector *AddAsgn_VV(Vector *V1, Vector *V2);
+diff -urN laspack.orig/laspack/precond.c laspack/laspack/precond.c
+--- laspack.orig/laspack/precond.c	2004-12-13 15:27:27.309548560 +0100
++++ laspack/laspack/precond.c	2004-12-13 15:36:10.019084632 +0100
+@@ -15,13 +15,13 @@
+ 
+ #include <math.h>
+ 
+-#include "laspack/precond.h"
+-#include "laspack/errhandl.h"
+-#include "laspack/qmatrix.h"
+-#include "laspack/operats.h"
+-#include "laspack/factor.h"
+-#include "laspack/itersolv.h"
+-#include "laspack/copyrght.h"
++#include "precond.h"
++#include "errhandl.h"
++#include "qmatrix.h"
++#include "operats.h"
++#include "factor.h"
++#include "itersolv.h"
++#include "copyrght.h"
+ 
+ Vector *JacobiPrecond(QMatrix *A, Vector *y, Vector *c, double Omega)
+ /* Jacobi preconditioner */
+diff -urN laspack.orig/laspack/precond.h laspack/laspack/precond.h
+--- laspack.orig/laspack/precond.h	2004-12-13 15:27:27.310548408 +0100
++++ laspack/laspack/precond.h	2004-12-13 15:39:05.814359688 +0100
+@@ -16,10 +16,10 @@
+ #ifndef PRECOND_H
+ #define PRECOND_H
+ 
+-#include "laspack/lastypes.h"
+-#include "laspack/vector.h"
+-#include "laspack/qmatrix.h"
+-#include "laspack/copyrght.h"
++#include "lastypes.h"
++#include "vector.h"
++#include "qmatrix.h"
++#include "copyrght.h"
+ 
+ typedef Vector *(*PrecondProcType)(QMatrix *, Vector *, Vector *, double);
+ 
+diff -urN laspack.orig/laspack/qmatrix.c laspack/laspack/qmatrix.c
+--- laspack.orig/laspack/qmatrix.c	2004-12-13 15:27:27.309548560 +0100
++++ laspack/laspack/qmatrix.c	2004-12-13 15:36:23.682007552 +0100
+@@ -18,9 +18,9 @@
+ #include <math.h>
+ #include <string.h>
+ 
+-#include "laspack/qmatrix.h"
+-#include "laspack/errhandl.h"
+-#include "laspack/copyrght.h"
++#include "qmatrix.h"
++#include "errhandl.h"
++#include "copyrght.h"
+ 
+ static ElType ZeroEl = { 0, 0.0 };
+ 
+diff -urN laspack.orig/laspack/qmatrix.h laspack/laspack/qmatrix.h
+--- laspack.orig/laspack/qmatrix.h	2004-12-13 15:27:27.310548408 +0100
++++ laspack/laspack/qmatrix.h	2004-12-13 15:39:14.645017224 +0100
+@@ -18,10 +18,10 @@
+ 
+ #include <stdlib.h>
+ 
+-#include "laspack/lastypes.h"
+-#include "laspack/elcmp.h"
+-#include "laspack/vector.h"
+-#include "laspack/copyrght.h"
++#include "lastypes.h"
++#include "elcmp.h"
++#include "vector.h"
++#include "copyrght.h"
+ 
+ typedef struct QMatrixType {
+     char *Name;
+diff -urN laspack.orig/laspack/rtc.c laspack/laspack/rtc.c
+--- laspack.orig/laspack/rtc.c	2004-12-13 15:27:27.309548560 +0100
++++ laspack/laspack/rtc.c	2004-12-13 15:36:37.502906456 +0100
+@@ -15,11 +15,11 @@
+ 
+ #include <stddef.h>
+ 
+-#include "laspack/rtc.h"
+-#include "laspack/errhandl.h"
+-#include "laspack/elcmp.h"
+-#include "laspack/operats.h"
+-#include "laspack/copyrght.h"
++#include "rtc.h"
++#include "errhandl.h"
++#include "elcmp.h"
++#include "operats.h"
++#include "copyrght.h"
+ 
+ /* accuracy for Residual Termination Control */
+ static double RTCEps = 1e-8;
+diff -urN laspack.orig/laspack/rtc.h laspack/laspack/rtc.h
+--- laspack.orig/laspack/rtc.h	2004-12-13 15:27:27.311548256 +0100
++++ laspack/laspack/rtc.h	2004-12-13 15:39:23.027742856 +0100
+@@ -16,10 +16,10 @@
+ #ifndef RTC_H
+ #define RTC_H
+ 
+-#include "laspack/lastypes.h"
+-#include "laspack/vector.h"
+-#include "laspack/itersolv.h"
+-#include "laspack/copyrght.h"
++#include "lastypes.h"
++#include "vector.h"
++#include "itersolv.h"
++#include "copyrght.h"
+ 
+ /* identifiers for iteration methods */
+ 
+diff -urN laspack.orig/laspack/vector.c laspack/laspack/vector.c
+--- laspack.orig/laspack/vector.c	2004-12-13 15:27:27.309548560 +0100
++++ laspack/laspack/vector.c	2004-12-13 15:36:46.989464280 +0100
+@@ -17,9 +17,9 @@
+ #include <stdlib.h>
+ #include <string.h>
+ 
+-#include "laspack/vector.h"
+-#include "laspack/errhandl.h"
+-#include "laspack/copyrght.h"
++#include "vector.h"
++#include "errhandl.h"
++#include "copyrght.h"
+ 
+ void V_Constr(Vector *V, char *Name, size_t Dim, InstanceType Instance,
+               Boolean OwnData)
+diff -urN laspack.orig/laspack/vector.h laspack/laspack/vector.h
+--- laspack.orig/laspack/vector.h	2004-12-13 15:27:27.311548256 +0100
++++ laspack/laspack/vector.h	2004-12-13 15:39:33.522147464 +0100
+@@ -18,9 +18,9 @@
+ 
+ #include <stdlib.h>
+ 
+-#include "laspack/lastypes.h"
+-#include "laspack/elcmp.h"
+-#include "laspack/copyrght.h"
++#include "lastypes.h"
++#include "elcmp.h"
++#include "copyrght.h"
+ 
+ typedef struct {
+     char *Name;
+diff -urN laspack.orig/laspack/version.h laspack/laspack/version.h
+--- laspack.orig/laspack/version.h	2004-12-13 15:27:27.311548256 +0100
++++ laspack/laspack/version.h	2004-12-13 15:39:44.528474248 +0100
+@@ -16,7 +16,7 @@
+ #ifndef LASPACK_VERSION_H
+ #define LASPACK_VERSION_H
+ 
+-#include "laspack/copyrght.h"
++#include "copyrght.h"
+ 
+ #define LASPACK_VERSION "1.12.2"
+ 
+diff -urN laspack.orig/xc/getopts.c laspack/xc/getopts.c
+--- laspack.orig/xc/getopts.c	2004-12-13 15:27:27.354541720 +0100
++++ laspack/xc/getopts.c	2004-12-13 15:42:59.855779984 +0100
+@@ -11,8 +11,8 @@
+ #include <ctype.h>
+ #include <string.h>
+ 
+-#include "xc/xtypes.h"
+-#include "xc/getopts.h"
++#include "xtypes.h"
++#include "getopts.h"
+ 
+ static size_t MaxStrLen = 16;
+ static OptErrType OptErr;
+diff -urN laspack.orig/xc/xstring.c laspack/xc/xstring.c
+--- laspack.orig/xc/xstring.c	2004-12-13 15:27:27.355541568 +0100
++++ laspack/xc/xstring.c	2004-12-13 15:43:12.061924368 +0100
+@@ -12,7 +12,7 @@
+ #include <string.h>
+ #include <ctype.h>
+ 
+-#include "xc/xtypes.h"
++#include "xtypes.h"
+ 
+ char *str2lwr(char *String)
+ /* transforms string characters into lower cases */

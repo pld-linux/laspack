@@ -235,11 +235,11 @@ diff -urN LASPACK.orig/laspack/makefile LASPACK.patch/laspack/makefile
 -.f.o:;		f77 $(FFLAGS) $(COMPFLAGS) -c $<
 diff -urN LASPACK.orig/laspack/Makefile.am LASPACK.patch/laspack/Makefile.am
 --- LASPACK.orig/laspack/Makefile.am	1970-01-01 01:00:00.000000000 +0100
-+++ LASPACK.patch/laspack/Makefile.am	2004-12-13 00:53:09.484378496 +0100
++++ LASPACK.patch/laspack/Makefile.am	2004-12-13 01:07:42.105719888 +0100
 @@ -0,0 +1,24 @@
 +lib_LTLIBRARIES = liblaspack.la
 +examplesdir = @prefix@/src/examples/$(PACKAGE)-$(VERSION)
-+liblaspack_la_LDFLAGS = -version-info $(subst .,:,@VERSION@)
++liblaspack_la_LDFLAGS = -version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE) 
 +liblaspack_la_SOURCES = eigenval.c errhandl.c factor.c itersolv.c \
 +			matrix.c mlsolv.c operats.c precond.c \
 +			qmatrix.c rtc.c vector.c
@@ -261,7 +261,6 @@ diff -urN LASPACK.orig/laspack/Makefile.am LASPACK.patch/laspack/Makefile.am
 +	$(INSTALL_DATA) examples/mlstest/*.h $(DESTDIR)$(examplesdir)/mlstest
 +	$(INSTALL_DATA) examples/vectopt/*.c $(DESTDIR)$(examplesdir)/vectopt
 +	$(INSTALL_DATA) examples/vectopt/*.h $(DESTDIR)$(examplesdir)/vectopt
-Pliki LASPACK.orig/laspack/.Makefile.am.swp i LASPACK.patch/laspack/.Makefile.am.swp ró¿ni± siê
 diff -urN LASPACK.orig/xc/configure.ac LASPACK.patch/xc/configure.ac
 --- LASPACK.orig/xc/configure.ac	1970-01-01 01:00:00.000000000 +0100
 +++ LASPACK.patch/xc/configure.ac	2004-12-12 23:01:36.540860568 +0100

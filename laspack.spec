@@ -65,6 +65,18 @@ Static LASPack library.
 %description static -l pl
 Statyczna biblioteka LASPack.
 
+%package examples
+Summary:	Example LASPack programs
+Summary(pl):	Przyk³adowe programy korzystaj±ce z LASPack
+Group:		Development/Libraries
+Requires:	%{name}-devel = %{version}-%{release}
+
+%description examples
+Example LASPack programs.
+
+%description examples -l pl
+Przyk³adowe programy korzystaj±ce z LASPack.
+
 %prep
 %setup -q -c LASPACK
 %patch -p1
@@ -76,7 +88,7 @@ cd laspack
 %{__autoheader}
 %{__autoconf}
 %{__automake}
-%ifarch x86
+%ifarch amd64
 %configure CFLAGS="-O2 -fomit-frame-pointer -maccumulate-outgoing-args"
 %else
 %configure
@@ -122,3 +134,7 @@ rm -fr $RPM_BUILD_ROOT
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/liblaspack.a
+
+%files examples
+%defattr(644,root,root,755)
+%{_examplesdir}/%{name}-%{version}/*

@@ -19,6 +19,9 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+%if %{with blas}
+ExclusiveArch:	amd64
+%endif
 
 %description
 LASPack is a package for solving large sparse systems of linear

@@ -461,9 +461,9 @@ diff -urN LASPACK.orig/xc/makefile LASPACK.patch/xc/makefile
 -.f.o:;		f77 $(FFLAGS) $(COMPFLAGS) -c $<
 diff -urN LASPACK.orig/xc/Makefile.am LASPACK.patch/xc/Makefile.am
 --- LASPACK.orig/xc/Makefile.am	1970-01-01 01:00:00.000000000 +0100
-+++ LASPACK.patch/xc/Makefile.am	2004-12-12 23:01:11.287699632 +0100
++++ LASPACK.patch/xc/Makefile.am	2004-12-13 01:31:43.392610976 +0100
 @@ -0,0 +1,4 @@
-+pkglib_LTLIBRARIES = libxc.la
++lib_LTLIBRARIES = libxc.la
 +libxc_la_LDFLAGS = -version-info $(subst .,:,@VERSION@)
 +libxc_la_SOURCES = getopts.c xstring.c
 +pkginclude_HEADERS = getopts.h version.h xstring.h xtypes.h

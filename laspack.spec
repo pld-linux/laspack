@@ -30,6 +30,8 @@ systems:
     CGS, and BiCGStab,
   - multilevel methods such as multigrid and conjugate gradient method
     preconditioned by multigrid and BPX preconditioners.
+These algorithms are described in
+http://www.netlib.org/linalg/html_templates/Templates.html 
 LASPack is written in ANSI C and is thus largely portable.
 
 %description -l pl
@@ -41,6 +43,8 @@ gradientow±, LASPack zawiera wybrane nowoczesne algorytmy:
   - metody CG i podobne: CGN, GMRES, BiCG, QMR, CGS i BiCGStab,
   - metody wielopoziomowe takie jak multigrid i gradientowa, u¿ywane z
     preconditionerami typu multigrid i BPX.
+Wymienione wy¿ej algorytmy zosta³y opisane w
+http://www.netlib.org/linalg/html_templates/Templates.html
 LASPack zosta³ napisany w ANSI C, jest wiêc bardzo przeno¶ny.
 
 %package devel

@@ -1,5 +1,5 @@
 Summary:	A package for solving large sparse systems of linear equations
-Summary(pl):	Pakiet do rozwi±zywania du¿ych i rzadkich uk³adów równañ liniowych
+Summary(pl):	Pakiet do rozwi±zywania du¿ych, rzadkich uk³adów równañ liniowych
 Name:		laspack
 Version:	1.12.2
 Release:	3
@@ -32,7 +32,7 @@ systems:
 LASPack is written in ANSI C and is thus largely portable.
 
 %description -l pl
-LASPack jest pakietem s³u¿±cym do rozwi±zywania du¿ych i rzadkich
+LASPack jest pakietem s³u¿±cym do rozwi±zywania du¿ych, rzadkich
 uk³adów równañ liniowych. Podstawowym jego celem jest implementacja
 wydajnych metod iteracyjnych.
 Poza obligatoryjn± metod± Jacobiego, relaksacji, Czebyszewa i
@@ -118,7 +118,7 @@ Biblioteka statyczna z rozszerzeniami xc.
 %prep
 %setup -q -c LASPACK
 %patch0 -p1
-%patch1	-p1
+%patch1 -p1
 
 %build
 cd laspack
@@ -144,11 +144,11 @@ cd ../xc
 %install
 rm -rf $RPM_BUILD_ROOT
 
-cd laspack
-%{__make} install \
+
+%{__make} -C laspack install \
 	DESTDIR=$RPM_BUILD_ROOT
-cd ../xc
-%{__make} install \
+
+%{__make} -C xc install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
@@ -156,8 +156,9 @@ rm -fr $RPM_BUILD_ROOT
 
 %post	-p /sbin/ldconfig
 %postun	-p /sbin/ldconfig
-%post xc -p /sbin/ldconfig
-%postun xc -p /sbin/ldconfig
+
+%post	xc -p /sbin/ldconfig
+%postun	xc -p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
@@ -169,7 +170,7 @@ rm -fr $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/liblaspack.so
 %doc laspack/doc/ laspack/html/
 %{_libdir}/liblaspack.la
-%{_includedir}/laspack/*.h
+%{_includedir}/laspack
 
 %files static
 %defattr(644,root,root,755)
@@ -177,7 +178,7 @@ rm -fr $RPM_BUILD_ROOT
 
 %files examples
 %defattr(644,root,root,755)
-%{_examplesdir}/%{name}-%{version}/*
+%{_examplesdir}/%{name}-%{version}
 
 %files xc
 %defattr(644,root,root,755)
@@ -186,7 +187,7 @@ rm -fr $RPM_BUILD_ROOT
 %files xc-devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libxc.so
-%{_includedir}/xc/*.h
+%{_includedir}/xc
 
 %files xc-static
 %defattr(644,root,root,755)

@@ -2,7 +2,7 @@ Summary:	A package for solving large sparse systems of linear equations
 Summary(pl):	Pakiet do rozwi±zywania du¿ych i rzadkich uk³adów równañ liniowych
 Name:		laspack
 Version:	1.12.2
-Release:	1
+Release:	2
 License:	Freely distributable
 Group:		Libraries
 Source0:	http://www.netlib.org/linalg/%{name}.tgz

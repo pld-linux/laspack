@@ -1,8 +1,11 @@
+
+%bcond_with blas	# with ACML interface to BLAS instead of direct vector operations
+
 Summary:	A package for solving large sparse systems of linear equations
 Summary(pl):	Pakiet do rozwi±zywania du¿ych, rzadkich uk³adów równañ liniowych
 Name:		laspack
 Version:	1.12.2
-Release:	4
+Release:	4%{?with_blas:BLAS}
 License:	Freely distributable
 Group:		Libraries
 Source0:	http://www.netlib.org/linalg/%{name}.tgz
@@ -10,6 +13,7 @@ Source0:	http://www.netlib.org/linalg/%{name}.tgz
 Source1:	%{name}-README.PLD
 Patch0:		%{name}-automake_support.patch
 Patch1:		%{name}-include.patch
+%{?with_blas:Patch2:	%{name}-blas.patch}
 URL:		http://www.tu-dresden.de/mwism/skalicky/laspack/laspack.html
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -124,6 +128,9 @@ Biblioteka statyczna z rozszerzeniami xc.
 %setup -q -c LASPACK
 %patch0 -p1
 %patch1 -p1
+%if %{with blas}
+%patch2 -p1
+%endif
 
 cp %{SOURCE1} README.PLD
 
@@ -134,7 +141,7 @@ cd laspack
 %{__autoheader}
 %{__autoconf}
 %{__automake}
-%configure
+%configure %{?with_blas: LDFLAGS="-lg2c -lacml -lm"}
 
 %{__make}
 

@@ -5,7 +5,7 @@ Summary:	A package for solving large sparse systems of linear equations
 Summary(pl):	Pakiet do rozwi±zywania du¿ych, rzadkich uk³adów równañ liniowych
 Name:		laspack
 Version:	1.12.2
-Release:	4%{?with_blas:BLAS}
+Release:	5%{?with_blas:BLAS}
 License:	Freely distributable
 Group:		Libraries
 Source0:	http://www.netlib.org/linalg/%{name}.tgz
@@ -179,13 +179,13 @@ rm -fr $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc readme
+%doc readme README.PLD
 %attr(755,root,root) %{_libdir}/liblaspack.so.*.*.*
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/liblaspack.so
-%doc README.PLD laspack/doc/ laspack/html/
+%doc laspack/doc/ laspack/html/
 %{_libdir}/liblaspack.la
 %{_includedir}/laspack
 

@@ -20,7 +20,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
 %if %{with blas}
-# some BR?
+# ACML exists for AMD 64-bit CPU's only
 ExclusiveArch:	amd64
 %endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)

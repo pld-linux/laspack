@@ -70,12 +70,49 @@ Summary:	Example LASPack programs
 Summary(pl):	Przyk³adowe programy korzystaj±ce z LASPack
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
+Requires:	%{name}-xc-devel
 
 %description examples
 Example LASPack programs.
 
 %description examples -l pl
 Przyk³adowe programy korzystaj±ce z LASPack.
+
+%package xc
+Summary:	Extensions of C string handling and command line options
+Summary(pl):	Rozszerzenia dla funkcji C dzia³aj±cych na opcjach linii poleceñ i ³añcuchach znaków
+Group:		Libraries
+
+%description xc
+Extensions of C string handling and command line options.
+
+%description xc -l pl
+Rozszerzenia dla funkcji C dzia³aj±cych na opcjach linii poleceñ i
+³añcuchach znaków.
+
+%package xc-devel
+Summary:	Development files for xc extensions
+Summary(pl):	Pliki programistyczne dla rozszerzeñ xc
+Group:		Development/Libraries
+Requires:	%{name}-xc = %{version}-%{release}
+
+%description xc-devel
+Development files for xc extensions.
+
+%description xc-devel -l pl
+Pliki programistyczne dla rozszerzeñ xc.
+
+%package xc-static
+Summary:	Static xc extensions library
+Summary(pl):	Biblioteka statyczna z rozszerzeniami xc
+Group:		Development/Libraries
+Requires:	%{name}-xc-devel = %{version}-%{release}
+
+%description xc-static
+Static xc extensions library.
+
+%description xc-static -l pl
+Biblioteka statyczna z rozszerzeniami xc.
 
 %prep
 %setup -q -c LASPACK
@@ -112,6 +149,9 @@ rm -rf $RPM_BUILD_ROOT
 cd laspack
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+cd ../xc
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
 rm -fr $RPM_BUILD_ROOT
@@ -138,3 +178,16 @@ rm -fr $RPM_BUILD_ROOT
 %files examples
 %defattr(644,root,root,755)
 %{_examplesdir}/%{name}-%{version}/*
+
+%files xc
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libxc.so.*.*.*
+
+%files xc-devel
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libxc.so
+%{_includedir}/xc/*.h
+
+%files xc-static
+%defattr(644,root,root,755)
+%{_libdir}/libxc.a

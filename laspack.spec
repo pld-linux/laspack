@@ -1,6 +1,7 @@
-
-%bcond_with blas	# with ACML interface to BLAS instead of direct vector operations
-
+#
+# Conditional build:
+%bcond_with	blas	# with ACML interface to BLAS instead of direct vector operations
+#
 Summary:	A package for solving large sparse systems of linear equations
 Summary(pl):	Pakiet do rozwi±zywania du¿ych, rzadkich uk³adów równañ liniowych
 Name:		laspack
@@ -13,15 +14,16 @@ Source0:	http://www.netlib.org/linalg/%{name}.tgz
 Source1:	%{name}-README.PLD
 Patch0:		%{name}-automake_support.patch
 Patch1:		%{name}-include.patch
-%{?with_blas:Patch2:	%{name}-blas.patch}
+Patch2:		%{name}-blas.patch
 URL:		http://www.tu-dresden.de/mwism/skalicky/laspack/laspack.html
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %if %{with blas}
+# some BR?
 ExclusiveArch:	amd64
 %endif
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 LASPack is a package for solving large sparse systems of linear
@@ -144,7 +146,8 @@ cd laspack
 %{__autoheader}
 %{__autoconf}
 %{__automake}
-%configure %{?with_blas: LDFLAGS="-lg2c -lacml -lm"}
+%configure \
+	%{?with_blas: LDFLAGS="-lg2c -lacml -lm"}
 
 %{__make}
 
@@ -160,7 +163,6 @@ cd ../xc
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
 
 %{__make} -C laspack install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -204,6 +206,7 @@ rm -fr $RPM_BUILD_ROOT
 %files xc-devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libxc.so
+%{_libdir}/libxc.la
 %{_includedir}/xc
 
 %files xc-static

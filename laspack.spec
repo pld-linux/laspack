@@ -8,7 +8,7 @@ Group:		Libraries
 Source0:	http://www.netlib.org/linalg/%{name}.tgz
 # Source0-md5:	fcfb3c86cc993e29eb477191b1136a8d
 Patch0:		%{name}-automake_support.patch
-URL:		http://www.caam.rice.edu/software/ARPACK/
+URL:		http://www.tu-dresden.de/mwism/skalicky/laspack/laspack.html
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool

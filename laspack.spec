@@ -8,7 +8,6 @@ Group:		Libraries
 Source0:	http://www.netlib.org/linalg/%{name}.tgz
 # Source0-md5:	fcfb3c86cc993e29eb477191b1136a8d
 Source1:	%{name}-README.PLD
-# Source1-md5:	2290dde984ceee52da65e5fea2f3576f
 Patch0:		%{name}-automake_support.patch
 Patch1:		%{name}-include.patch
 URL:		http://www.tu-dresden.de/mwism/skalicky/laspack/laspack.html

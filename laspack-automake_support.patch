@@ -1,0 +1,446 @@
+diff -urN LASPACK.orig/laspack/configure.ac LASPACK.patch/laspack/configure.ac
+--- LASPACK.orig/laspack/configure.ac	1970-01-01 01:00:00.000000000 +0100
++++ LASPACK.patch/laspack/configure.ac	2004-12-12 23:12:25.250241752 +0100
+@@ -0,0 +1,9 @@
++AC_INIT([laspack],[1.12.0])
++AM_INIT_AUTOMAKE
++AM_CONFIG_HEADER([config.h])
++
++dnl Checks for programs.
++AC_PROG_CC
++AM_PROG_LIBTOOL
++
++AC_OUTPUT([Makefile])
+diff -urN LASPACK.orig/laspack/makefile LASPACK.patch/laspack/makefile
+--- LASPACK.orig/laspack/makefile	1995-08-11 14:48:52.000000000 +0200
++++ LASPACK.patch/laspack/makefile	1970-01-01 01:00:00.000000000 +0100
+@@ -1,210 +0,0 @@
+-#
+-# set appropriate the following variables in your environment:
+-#
+-# CC		for the C compiler
+-# CFLAGS	for options of CC
+-# LDFLAGS	for linker options of CC
+-#
+-
+-#
+-# ARCH_EXT can be used in order to install libraries in different directories
+-# depending on the computer architecture,
+-# e.g. $(HOME)/lib/sunos for ARCH_EXT = '/sunos'
+-#
+-#ARCH_EXT	=
+-
+-#
+-# set the path for the root of the include directories here,
+-# e.g. /usr/local/include
+-#
+-INCROOT		= ..
+-#
+-# set the destination directories for the library and include files
+-#
+-LIBDEST		= $(HOME)/lib$(ARCH_EXT)
+-INCDEST		= $(HOME)/include
+-
+-#
+-# the following text was created automaticaly. You should change it carefully.
+-#
+-
+-SHELL		= /bin/sh
+-
+-LIBNAME		= laspack
+-
+-LIBRARY		= lib$(LIBNAME).a
+-
+-HDRS		= copyrght.h \
+-		eigenval.h \
+-		elcmp.h \
+-		errhandl.h \
+-		factor.h \
+-		itersolv.h \
+-		lastypes.h \
+-		matrix.h \
+-		mlsolv.h \
+-		operats.h \
+-		precond.h \
+-		qmatrix.h \
+-		rtc.h \
+-		vector.h \
+-		version.h
+-
+-EXTHDRS		=
+-
+-SRCS		= eigenval.c \
+-		errhandl.c \
+-		factor.c \
+-		itersolv.c \
+-		matrix.c \
+-		mlsolv.c \
+-		operats.c \
+-		precond.c \
+-		qmatrix.c \
+-		rtc.c \
+-		vector.c
+-
+-OBJS		= eigenval.o \
+-		errhandl.o \
+-		factor.o \
+-		itersolv.o \
+-		matrix.o \
+-		mlsolv.o \
+-		operats.o \
+-		precond.o \
+-		qmatrix.o \
+-		rtc.o \
+-		vector.o
+-
+-LIBS		=
+-
+-COMPFLAGS	=  
+-
+-# compiler options passed throuth enviroment variables
+-#CFLAGS		=
+-#PFLAGS		=
+-#FFLAGS		=
+-#CXXFLAGS	=
+-
+-LIBLOCAL	= /usr/local/lib
+-INCLOCAL	= /usr/local/include
+-
+-INSTALL		= mv
+-
+-ARFLAGS		= cru
+-
+-LINTLIBS	=
+-
+-LINTFLAGS	= -u -I$(INCROOT) $(CFLAGS)
+-
+-MAKEFILE	= makefile
+-
+-PRINT		= pr
+-
+-PRINTFLAGS	=
+-
+-LP		= lp
+-
+-LPFLAGS		= 
+-
+-all:		$(LIBRARY)
+-
+-clean:;		@rm -rf $(OBJS) core
+-
+-clobber:;	@rm -f $(OBJS) $(LIBRARY) core tags
+-		@if [ -f compllist ]; then rm -f compllist; fi
+-		@if [ -f cleanlist ]; then rm -f cleanlist; fi
+-		@find . -type f -print > compllist
+-		@sed -n \
+-			-e "/~/ w cleanlist" \
+-			-e '/%/ w cleanlist' \
+-			-e '/.bak/ w cleanlist' \
+-			-e '/.obj/ w cleanlist' \
+-			-e '/.exe/ w cleanlist' \
+-			-e '/.aux/ w cleanlist' \
+-			-e '/.blg/ w cleanlist' \
+-			-e '/.dvi/ w cleanlist' \
+-			-e '/.glo/ w cleanlist' \
+-			-e '/.idx/ w cleanlist' \
+-			-e '/.ilg/ w cleanlist' \
+-			-e '/.ind/ w cleanlist' \
+-			-e '/.lof/ w cleanlist' \
+-			-e '/.log/ w cleanlist' \
+-			-e '/.lot/ w cleanlist' \
+-			-e '/.toc/ w cleanlist' \
+-			compllist
+-		@rm -f `cat cleanlist`
+-		@rm -f compllist
+-		@rm -f cleanlist
+-
+-depend:;	@mkmf -f $(MAKEFILE)
+-
+-echo:;		@echo $(HDRS) $(SRCS)
+-
+-index:;		@ctags -wx $(HDRS) $(SRCS)
+-
+-install:	$(LIBRARY)
+-		@echo Installing $(LIBRARY) in $(LIBDEST)
+-		@if [ $(LIBDEST) != . ]; then rm -f $(LIBDEST)/$(LIBRARY); fi
+-		@if [ $(LIBDEST) != . ]; then $(INSTALL) -f $(LIBRARY) $(LIBDEST); fi
+-		@echo Installing header files in $(INCDEST)/$(LIBNAME)
+-		@rm -rf $(INCDEST)/$(LIBNAME).old
+-		@if [ -d $(INCDEST)/$(LIBNAME) ]; then \
+-			mv $(INCDEST)/$(LIBNAME) $(INCDEST)/$(LIBNAME).old; \
+-		fi
+-		@mkdir $(INCDEST)/$(LIBNAME)
+-		@chmod 755 $(INCDEST)/$(LIBNAME)
+-		@cp *.h $(INCDEST)/$(LIBNAME)
+-		@chmod 644 $(INCDEST)/$(LIBNAME)/*
+-
+-install-local:	$(LIBRARY)
+-		@echo Installing $(LIBRARY) in $(LIBLOCAL)
+-		@rm -f $(LIBLOCAL)/$(LIBRARY).old
+-		@if [ -f $(LIBLOCAL)/$(LIBRARY) ]; then \
+-			mv $(LIBLOCAL)/$(LIBRARY) $(LIBLOCAL)/$(LIBRARY).old; \
+-		fi
+-		@$(INSTALL) $(LIBRARY) $(LIBLOCAL)
+-		@chmod 755 $(LIBLOCAL)/$(LIBRARY)
+-		@echo Installing header files in $(INCLOCAL)/$(LIBNAME)
+-		@rm -rf $(INCLOCAL)/$(LIBNAME).old
+-		@if [ -d $(INCLOCAL)/$(LIBNAME) ]; then \
+-			mv $(INCLOCAL)/$(LIBNAME) $(INCLOCAL)/$(LIBNAME).old; \
+-		fi
+-		@mkdir $(INCLOCAL)/$(LIBNAME)
+-		@chmod 755 $(INCLOCAL)/$(LIBNAME)
+-		@cp *.h $(INCLOCAL)/$(LIBNAME)
+-		@chmod 755 $(INCLOCAL)/$(LIBNAME)/*
+-
+-lint:		$(LINTLIBS) $(HDRS) $(EXTHDRS) $(SRCS)
+-		@$(LINT) $(LINTFLAGS) $(LINTLIBS) $(SRCS)
+-
+-print:;		@$(PRINT) $(PRINTFLAGS) $(HDRS) $(SRCS) | $(LP) $(LPFLAGS)
+-
+-tags:           $(HDRS) $(SRCS) 
+-		@ctags $(HDRS) $(SRCS)
+-
+-touch:;		@touch $(HDRS) $(SRCS) $(MAKEFILE)
+-
+-update:		$(LIBDEST)/$(LIBRARY)
+-
+-d2u:;		@d2u $(HDRS) $(SRCS)
+-
+-c:;		@$(MAKE) -f $(MAKEFILE) clean
+-cl:;		@$(MAKE) -f $(MAKEFILE) clobber
+-i:;             @$(MAKE) -f $(MAKEFILE) install
+-il:;		@$(MAKE) -f $(MAKEFILE) install-local
+-l:;		@$(MAKE) -f $(MAKEFILE) lint
+-t:;		@$(MAKE) -f $(MAKEFILE) touch
+-u:;		@$(MAKE) -f $(MAKEFILE) update 
+-
+-$(LIBRARY):     $(OBJS) $(MAKEFILE)
+-		@echo "Loading $(LIBRARY) ..."
+-		@ar $(ARFLAGS) $(LIBRARY) $(OBJS)
+-		@ranlib $(LIBRARY)
+-
+-$(LIBDEST)/$(LIBRARY):  $(HDRS) $(EXTHDRS) $(SRCS) $(LIBS) 
+-		@$(MAKE) -f $(MAKEFILE) install
+-
+-.c.o:;		$(CC) -I$(INCROOT) $(CFLAGS) $(COMPFLAGS) -c $<
+-.p.o:;		pc $(PFLAGS) $(COMPFLAGS) -c $<
+-.f.o:;		f77 $(FFLAGS) $(COMPFLAGS) -c $<
+diff -urN LASPACK.orig/laspack/Makefile.am LASPACK.patch/laspack/Makefile.am
+--- LASPACK.orig/laspack/Makefile.am	1970-01-01 01:00:00.000000000 +0100
++++ LASPACK.patch/laspack/Makefile.am	2004-12-13 00:00:29.380787264 +0100
+@@ -0,0 +1,9 @@
++lib_LTLIBRARIES = liblaspack.la
++liblaspack_la_LDFLAGS = -version-info $(subst .,:,@VERSION@)
++liblaspack_la_SOURCES = eigenval.c errhandl.c factor.c itersolv.c \
++			matrix.c mlsolv.c operats.c precond.c \
++			qmatrix.c rtc.c vector.c
++pkginclude_HEADERS = copyrght.h eigenval.h elcmp.h errhandl.h \
++		  factor.h itersolv.h lastypes.h matrix.h \
++		  mlsolv.h operats.h precond.h qmatrix.h \
++		  rtc.h vector.h version.h
+diff -urN LASPACK.orig/xc/configure.ac LASPACK.patch/xc/configure.ac
+--- LASPACK.orig/xc/configure.ac	1970-01-01 01:00:00.000000000 +0100
++++ LASPACK.patch/xc/configure.ac	2004-12-12 23:01:36.540860568 +0100
+@@ -0,0 +1,9 @@
++AC_INIT([xc],[0.95.0])
++AM_INIT_AUTOMAKE
++AM_CONFIG_HEADER([config.h])
++
++dnl Checks for programs.
++AC_PROG_CC
++AM_PROG_LIBTOOL
++
++AC_OUTPUT([Makefile])
+diff -urN LASPACK.orig/xc/makefile LASPACK.patch/xc/makefile
+--- LASPACK.orig/xc/makefile	1995-08-11 14:48:51.000000000 +0200
++++ LASPACK.patch/xc/makefile	1970-01-01 01:00:00.000000000 +0100
+@@ -1,181 +0,0 @@
+-#
+-# set appropriate the following variables in your environment:
+-#
+-# CC		for the C compiler
+-# CFLAGS	for options of CC
+-# LDFLAGS	for linker options of CC
+-#
+-
+-#
+-# ARCH_EXT can be used in order to install libraries in different directories
+-# depending on the computer architecture,
+-# e.g. $(HOME)/lib/sunos for ARCH_EXT = '/sunos'
+-#
+-#ARCH_EXT	=
+-
+-#
+-# set the path for the root of the include directories here,
+-# e.g. /usr/local/include
+-#
+-INCROOT		= ..
+-#
+-# set the destination directories for the library and include files
+-#
+-LIBDEST		= $(HOME)/lib$(ARCH_EXT)
+-INCDEST		= $(HOME)/include
+-
+-#
+-# the following text was created automaticaly. You should change it carefully.
+-#
+-
+-SHELL		= /bin/sh
+-
+-LIBNAME		= xc
+-
+-LIBRARY		= lib$(LIBNAME).a
+-
+-HDRS		= getopts.h \
+-		version.h \
+-		xstring.h \
+-		xtypes.h
+-
+-EXTHDRS		=
+-
+-SRCS		= getopts.c \
+-		xstring.c
+-
+-OBJS		= getopts.o \
+-		xstring.o
+-
+-LIBS		=
+-
+-COMPFLAGS	=  
+-
+-# compiler options passed throuth enviroment variables
+-#CFLAGS		=
+-#PFLAGS		=
+-#FFLAGS		=
+-#CXXFLAGS	=
+-
+-LIBLOCAL	= /usr/local/lib
+-INCLOCAL	= /usr/local/include
+-
+-INSTALL		= mv
+-
+-ARFLAGS		= cru
+-
+-LINTLIBS	=
+-
+-LINTFLAGS	= -u -I$(INCROOT) $(CFLAGS)
+-
+-MAKEFILE	= makefile
+-
+-PRINT		= pr
+-
+-PRINTFLAGS	=
+-
+-LP		= lp
+-
+-LPFLAGS		= 
+-
+-all:		$(LIBRARY)
+-
+-clean:;		@rm -rf $(OBJS) core
+-
+-clobber:;	@rm -f $(OBJS) $(LIBRARY) core tags
+-		@if [ -f compllist ]; then rm -f compllist; fi
+-		@if [ -f cleanlist ]; then rm -f cleanlist; fi
+-		@find . -type f -print > compllist
+-		@sed -n \
+-			-e "/~/ w cleanlist" \
+-			-e '/%/ w cleanlist' \
+-			-e '/.bak/ w cleanlist' \
+-			-e '/.obj/ w cleanlist' \
+-			-e '/.exe/ w cleanlist' \
+-			-e '/.aux/ w cleanlist' \
+-			-e '/.blg/ w cleanlist' \
+-			-e '/.dvi/ w cleanlist' \
+-			-e '/.glo/ w cleanlist' \
+-			-e '/.idx/ w cleanlist' \
+-			-e '/.ilg/ w cleanlist' \
+-			-e '/.ind/ w cleanlist' \
+-			-e '/.lof/ w cleanlist' \
+-			-e '/.log/ w cleanlist' \
+-			-e '/.lot/ w cleanlist' \
+-			-e '/.toc/ w cleanlist' \
+-			compllist
+-		@rm -f `cat cleanlist`
+-		@rm -f compllist
+-		@rm -f cleanlist
+-
+-depend:;	@mkmf -f $(MAKEFILE)
+-
+-echo:;		@echo $(HDRS) $(SRCS)
+-
+-index:;		@ctags -wx $(HDRS) $(SRCS)
+-
+-install:	$(LIBRARY)
+-		@echo Installing $(LIBRARY) in $(LIBDEST)
+-		@if [ $(LIBDEST) != . ]; then rm -f $(LIBDEST)/$(LIBRARY); fi
+-		@if [ $(LIBDEST) != . ]; then $(INSTALL) -f $(LIBRARY) $(LIBDEST); fi
+-		@echo Installing header files in $(INCDEST)/$(LIBNAME)
+-		@rm -rf $(INCDEST)/$(LIBNAME).old
+-		@if [ -d $(INCDEST)/$(LIBNAME) ]; then \
+-			mv $(INCDEST)/$(LIBNAME) $(INCDEST)/$(LIBNAME).old; \
+-		fi
+-		@mkdir $(INCDEST)/$(LIBNAME)
+-		@chmod 755 $(INCDEST)/$(LIBNAME)
+-		@cp *.h $(INCDEST)/$(LIBNAME)
+-		@chmod 644 $(INCDEST)/$(LIBNAME)/*
+-
+-install-local:	$(LIBRARY)
+-		@echo Installing $(LIBRARY) in $(LIBLOCAL)
+-		@rm -f $(LIBLOCAL)/$(LIBRARY).old
+-		@if [ -f $(LIBLOCAL)/$(LIBRARY) ]; then \
+-			mv $(LIBLOCAL)/$(LIBRARY) $(LIBLOCAL)/$(LIBRARY).old; \
+-		fi
+-		@$(INSTALL) $(LIBRARY) $(LIBLOCAL)
+-		@chmod 755 $(LIBLOCAL)/$(LIBRARY)
+-		@echo Installing header files in $(INCLOCAL)/$(LIBNAME)
+-		@rm -rf $(INCLOCAL)/$(LIBNAME).old
+-		@if [ -d $(INCLOCAL)/$(LIBNAME) ]; then \
+-			mv $(INCLOCAL)/$(LIBNAME) $(INCLOCAL)/$(LIBNAME).old; \
+-		fi
+-		@mkdir $(INCLOCAL)/$(LIBNAME)
+-		@chmod 755 $(INCLOCAL)/$(LIBNAME)
+-		@cp *.h $(INCLOCAL)/$(LIBNAME)
+-		@chmod 755 $(INCLOCAL)/$(LIBNAME)/*
+-
+-lint:		$(LINTLIBS) $(HDRS) $(EXTHDRS) $(SRCS)
+-		@$(LINT) $(LINTFLAGS) $(LINTLIBS) $(SRCS)
+-
+-print:;		@$(PRINT) $(PRINTFLAGS) $(HDRS) $(SRCS) | $(LP) $(LPFLAGS)
+-
+-tags:           $(HDRS) $(SRCS) 
+-		@ctags $(HDRS) $(SRCS)
+-
+-touch:;		@touch $(HDRS) $(SRCS) $(MAKEFILE)
+-
+-update:		$(LIBDEST)/$(LIBRARY)
+-
+-d2u:;		@d2u $(HDRS) $(SRCS)
+-
+-c:;		@$(MAKE) -f $(MAKEFILE) clean
+-cl:;		@$(MAKE) -f $(MAKEFILE) clobber
+-i:;             @$(MAKE) -f $(MAKEFILE) install
+-il:;		@$(MAKE) -f $(MAKEFILE) install-local
+-l:;		@$(MAKE) -f $(MAKEFILE) lint
+-t:;		@$(MAKE) -f $(MAKEFILE) touch
+-u:;		@$(MAKE) -f $(MAKEFILE) update 
+-
+-$(LIBRARY):     $(OBJS) $(MAKEFILE)
+-		@echo "Loading $(LIBRARY) ..."
+-		@ar $(ARFLAGS) $(LIBRARY) $(OBJS)
+-		@ranlib $(LIBRARY)
+-
+-$(LIBDEST)/$(LIBRARY):  $(HDRS) $(EXTHDRS) $(SRCS) $(LIBS) 
+-		@$(MAKE) -f $(MAKEFILE) install
+-
+-.c.o:;		$(CC) -I$(INCROOT) $(CFLAGS) $(COMPFLAGS) -c $<
+-.p.o:;		pc $(PFLAGS) $(COMPFLAGS) -c $<
+-.f.o:;		f77 $(FFLAGS) $(COMPFLAGS) -c $<
+diff -urN LASPACK.orig/xc/Makefile.am LASPACK.patch/xc/Makefile.am
+--- LASPACK.orig/xc/Makefile.am	1970-01-01 01:00:00.000000000 +0100
++++ LASPACK.patch/xc/Makefile.am	2004-12-12 23:01:11.287699632 +0100
+@@ -0,0 +1,4 @@
++pkglib_LTLIBRARIES = libxc.la
++libxc_la_LDFLAGS = -version-info $(subst .,:,@VERSION@)
++libxc_la_SOURCES = getopts.c xstring.c
++pkginclude_HEADERS = getopts.h version.h xstring.h xtypes.h

@@ -125,11 +125,7 @@ cd laspack
 %{__autoheader}
 %{__autoconf}
 %{__automake}
-%ifarch amd64
-%configure CFLAGS="-O2 -fomit-frame-pointer -maccumulate-outgoing-args"
-%else
 %configure
-%endif
 
 %{__make}
 

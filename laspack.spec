@@ -3,7 +3,7 @@
 %bcond_with	blas	# with ACML interface to BLAS instead of direct vector operations
 #
 Summary:	A package for solving large sparse systems of linear equations
-Summary(pl):	Pakiet do rozwi±zywania duøych, rzadkich uk≥adÛw rÛwnaÒ liniowych
+Summary(pl.UTF-8):   Pakiet do rozwiƒÖzywania du≈ºych, rzadkich uk≈Çad√≥w r√≥wna≈Ñ liniowych
 Name:		laspack
 Version:	1.12.2
 Release:	5%{?with_blas:BLAS}
@@ -43,46 +43,46 @@ These algorithms are described in
 http://www.netlib.org/linalg/html_templates/Templates.html 
 LASPack is written in ANSI C and is thus largely portable.
 
-%description -l pl
-LASPack jest pakietem s≥uø±cym do rozwi±zywania duøych, rzadkich
-uk≥adÛw rÛwnaÒ liniowych. Podstawowym jego celem jest implementacja
+%description -l pl.UTF-8
+LASPack jest pakietem s≈Çu≈ºƒÖcym do rozwiƒÖzywania du≈ºych, rzadkich
+uk≈Çad√≥w r√≥wna≈Ñ liniowych. Podstawowym jego celem jest implementacja
 wydajnych metod iteracyjnych.
-Poza obligatoryjn± metod± Jacobiego, relaksacji, Czebyszewa i
-gradientow±, LASPack zawiera wybrane nowoczesne algorytmy:
+Poza obligatoryjnƒÖ metodƒÖ Jacobiego, relaksacji, Czebyszewa i
+gradientowƒÖ, LASPack zawiera wybrane nowoczesne algorytmy:
   - metody CG i podobne: CGN, GMRES, BiCG, QMR, CGS i BiCGStab,
-  - metody wielopoziomowe takie jak multigrid i gradientowa, uøywane z
+  - metody wielopoziomowe takie jak multigrid i gradientowa, u≈ºywane z
     preconditionerami typu multigrid i BPX.
-Wymienione wyøej algorytmy zosta≥y opisane w
+Wymienione wy≈ºej algorytmy zosta≈Çy opisane w
 http://www.netlib.org/linalg/html_templates/Templates.html
-LASPack zosta≥ napisany w ANSI C, jest wiÍc bardzo przeno∂ny.
+LASPack zosta≈Ç napisany w ANSI C, jest wiƒôc bardzo przeno≈õny.
 
 %package devel
 Summary:	LASPack development files
-Summary(pl):	Pliki programistyczne LASPack
+Summary(pl.UTF-8):   Pliki programistyczne LASPack
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
 LASPack development files.
 
-%description devel -l pl
+%description devel -l pl.UTF-8
 Pliki programistyczne LASPack.
 
 %package static
 Summary:	Static LASPack library
-Summary(pl):	Statyczna biblioteka LASPack
+Summary(pl.UTF-8):   Statyczna biblioteka LASPack
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static LASPack library.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna biblioteka LASPack.
 
 %package examples
 Summary:	Example LASPack programs
-Summary(pl):	Przyk≥adowe programy korzystaj±ce z LASPack
+Summary(pl.UTF-8):   Przyk≈Çadowe programy korzystajƒÖce z LASPack
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 Requires:	%{name}-xc-devel
@@ -90,43 +90,43 @@ Requires:	%{name}-xc-devel
 %description examples
 Example LASPack programs.
 
-%description examples -l pl
-Przyk≥adowe programy korzystaj±ce z LASPack.
+%description examples -l pl.UTF-8
+Przyk≈Çadowe programy korzystajƒÖce z LASPack.
 
 %package xc
 Summary:	Extensions of C string handling and command line options
-Summary(pl):	Rozszerzenia dla funkcji C dzia≥aj±cych na opcjach linii poleceÒ i ≥aÒcuchach znakÛw
+Summary(pl.UTF-8):   Rozszerzenia dla funkcji C dzia≈ÇajƒÖcych na opcjach linii polece≈Ñ i ≈Ça≈Ñcuchach znak√≥w
 Group:		Libraries
 
 %description xc
 Extensions of C string handling and command line options.
 
-%description xc -l pl
-Rozszerzenia dla funkcji C dzia≥aj±cych na opcjach linii poleceÒ i
-≥aÒcuchach znakÛw.
+%description xc -l pl.UTF-8
+Rozszerzenia dla funkcji C dzia≈ÇajƒÖcych na opcjach linii polece≈Ñ i
+≈Ça≈Ñcuchach znak√≥w.
 
 %package xc-devel
 Summary:	Development files for xc extensions
-Summary(pl):	Pliki programistyczne dla rozszerzeÒ xc
+Summary(pl.UTF-8):   Pliki programistyczne dla rozszerze≈Ñ xc
 Group:		Development/Libraries
 Requires:	%{name}-xc = %{version}-%{release}
 
 %description xc-devel
 Development files for xc extensions.
 
-%description xc-devel -l pl
-Pliki programistyczne dla rozszerzeÒ xc.
+%description xc-devel -l pl.UTF-8
+Pliki programistyczne dla rozszerze≈Ñ xc.
 
 %package xc-static
 Summary:	Static xc extensions library
-Summary(pl):	Biblioteka statyczna z rozszerzeniami xc
+Summary(pl.UTF-8):   Biblioteka statyczna z rozszerzeniami xc
 Group:		Development/Libraries
 Requires:	%{name}-xc-devel = %{version}-%{release}
 
 %description xc-static
 Static xc extensions library.
 
-%description xc-static -l pl
+%description xc-static -l pl.UTF-8
 Biblioteka statyczna z rozszerzeniami xc.
 
 %prep

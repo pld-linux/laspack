@@ -3,7 +3,7 @@
 %bcond_with	blas	# with ACML interface to BLAS instead of direct vector operations
 #
 Summary:	A package for solving large sparse systems of linear equations
-Summary(pl.UTF-8):   Pakiet do rozwiązywania dużych, rzadkich układów równań liniowych
+Summary(pl.UTF-8):	Pakiet do rozwiązywania dużych, rzadkich układów równań liniowych
 Name:		laspack
 Version:	1.12.2
 Release:	5%{?with_blas:BLAS}
@@ -58,7 +58,7 @@ LASPack został napisany w ANSI C, jest więc bardzo przenośny.
 
 %package devel
 Summary:	LASPack development files
-Summary(pl.UTF-8):   Pliki programistyczne LASPack
+Summary(pl.UTF-8):	Pliki programistyczne LASPack
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -70,7 +70,7 @@ Pliki programistyczne LASPack.
 
 %package static
 Summary:	Static LASPack library
-Summary(pl.UTF-8):   Statyczna biblioteka LASPack
+Summary(pl.UTF-8):	Statyczna biblioteka LASPack
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
@@ -82,7 +82,7 @@ Statyczna biblioteka LASPack.
 
 %package examples
 Summary:	Example LASPack programs
-Summary(pl.UTF-8):   Przykładowe programy korzystające z LASPack
+Summary(pl.UTF-8):	Przykładowe programy korzystające z LASPack
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 Requires:	%{name}-xc-devel
@@ -95,7 +95,7 @@ Przykładowe programy korzystające z LASPack.
 
 %package xc
 Summary:	Extensions of C string handling and command line options
-Summary(pl.UTF-8):   Rozszerzenia dla funkcji C działających na opcjach linii poleceń i łańcuchach znaków
+Summary(pl.UTF-8):	Rozszerzenia dla funkcji C działających na opcjach linii poleceń i łańcuchach znaków
 Group:		Libraries
 
 %description xc
@@ -107,7 +107,7 @@ Rozszerzenia dla funkcji C działających na opcjach linii poleceń i
 
 %package xc-devel
 Summary:	Development files for xc extensions
-Summary(pl.UTF-8):   Pliki programistyczne dla rozszerzeń xc
+Summary(pl.UTF-8):	Pliki programistyczne dla rozszerzeń xc
 Group:		Development/Libraries
 Requires:	%{name}-xc = %{version}-%{release}
 
@@ -119,7 +119,7 @@ Pliki programistyczne dla rozszerzeń xc.
 
 %package xc-static
 Summary:	Static xc extensions library
-Summary(pl.UTF-8):   Biblioteka statyczna z rozszerzeniami xc
+Summary(pl.UTF-8):	Biblioteka statyczna z rozszerzeniami xc
 Group:		Development/Libraries
 Requires:	%{name}-xc-devel = %{version}-%{release}
 
